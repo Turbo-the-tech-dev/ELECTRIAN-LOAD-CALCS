@@ -23,7 +23,7 @@ class ElectricalRizz:
             float: The voltage drop percentage. If it's high, you need to lock in.
         
         Reference:
-            [span_0](start_span)Based on Chapter 5: Wire and Cable Systems[span_0](end_span).
+            Based on Chapter 5: Wire and Cable Systems.
         """
         # K-factor: Copper = 12.9, Aluminum = 21.2 (Approximations for that quick maffs)
         k_factor = 12.9 if material.lower() == 'copper' else 21.2
@@ -37,6 +37,9 @@ class ElectricalRizz:
         
         if wire_gauge not in cmil_map:
             return -1.0 # Error: We don't mess with that unknown wire gauge.
+
+        if voltage <= 0:
+            return -1.0 # Error: Voltage cannot be zero or negative.
 
         cmils = cmil_map[wire_gauge]
         
@@ -61,7 +64,7 @@ class ElectricalRizz:
             bool: True if you're valid (Sigma), False if you're violating (Beta).
             
         Reference:
-            [span_1](start_span)Based on Chapter 3: Conduit Systems[span_1](end_span).
+            Based on Chapter 3: Conduit Systems.
             1 conductor = 53% max fill
             2 conductors = 31% max fill
             3+ conductors = 40% max fill
@@ -90,7 +93,7 @@ class ElectricalRizz:
             float: Total shrink amount in inches. Add this or your fit is mid.
             
         Reference:
-            [span_2](start_span)Chapter 3: Bending Fundamentals[span_2](end_span).
+            Chapter 3: Bending Fundamentals.
             Multipliers: 30deg = 0.26 shrink/inch.
         """
         # Shrink constants per inch of rise
@@ -99,7 +102,7 @@ class ElectricalRizz:
             22.5: 0.19, # rounded from 3/16
             30: 0.25,   # 1/4 inch
             45: 0.38,   # 3/8 inch
-            [span_3](start_span)60: 0.58    #[span_3](end_span)
+            60: 0.58
         }
         
         if angle not in shrink_map:
@@ -116,7 +119,7 @@ class ElectricalRizz:
         Prints the LOTO steps so you don't end up on a T-shirt.
         
         Reference:
-            [span_4](start_span)Chapter 2: Jobsite Safety[span_4](end_span).
+            Chapter 2: Jobsite Safety.
         """
         steps = [
             "1. Identify the ops (energy sources).",
