@@ -1,10 +1,20 @@
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Tuple
 
 class CircuitLogic:
     """
     Handles the boolean logic for switching and the decision trees for troubleshooting.
     We reverse-engineered this from Chapter 9 because the original spec file ghosted us.
     """
+
+    # Systematic Troubleshooting Methodology steps
+    TROUBLESHOOTING_CHECKLIST = (
+        "1. Problem Definition (Don't guess, assess)",
+        "2. Safety Prep (LOTO or you're toast)",
+        "3. Visual Inspection (Look with your eyes, not your hands)",
+        "4. Diagnostic Testing (Multimeter time)",
+        "5. Isolation (Divide and conquer)",
+        "6. Solution (Fix it and flex)"
+    )
 
     def __init__(self):
         # State memory for that 3-way switch rizz
@@ -92,21 +102,14 @@ class CircuitLogic:
             return 0.40
         return 0.0
 
-    def get_troubleshooting_checklist(self) -> List[str]:
+    def get_troubleshooting_checklist(self) -> Tuple[str, ...]:
         """
         Returns the 'Systematic Troubleshooting Methodology' steps.
         
         Reference:
             Chapter 9, Page 76-77.
         """
-        return [
-            "1. Problem Definition (Don't guess, assess)",
-            "2. Safety Prep (LOTO or you're toast)",
-            "3. Visual Inspection (Look with your eyes, not your hands)",
-            "4. Diagnostic Testing (Multimeter time)",
-            "5. Isolation (Divide and conquer)",
-            "6. Solution (Fix it and flex)"
-        ]
+        return self.TROUBLESHOOTING_CHECKLIST
 
 # --- Quick Test of the Logic ---
 if __name__ == "__main__":
