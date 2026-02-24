@@ -99,7 +99,7 @@ class ElectricalRizz:
             22.5: 0.19, # rounded from 3/16
             30: 0.25,   # 1/4 inch
             45: 0.38,   # 3/8 inch
-            [span_3](start_span)60: 0.58    #[span_3](end_span)
+            60: 0.58
         }
         
         if angle not in shrink_map:
