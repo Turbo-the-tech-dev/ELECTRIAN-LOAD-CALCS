@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Sequence
 
 class CircuitLogic:
     """
@@ -92,21 +92,24 @@ class CircuitLogic:
             return 0.40
         return 0.0
 
-    def get_troubleshooting_checklist(self) -> List[str]:
+    # Static reference data
+    TROUBLESHOOTING_STEPS = (
+        "1. Problem Definition (Don't guess, assess)",
+        "2. Safety Prep (LOTO or you're toast)",
+        "3. Visual Inspection (Look with your eyes, not your hands)",
+        "4. Diagnostic Testing (Multimeter time)",
+        "5. Isolation (Divide and conquer)",
+        "6. Solution (Fix it and flex)"
+    )
+
+    def get_troubleshooting_checklist(self) -> Sequence[str]:
         """
         Returns the 'Systematic Troubleshooting Methodology' steps.
         
         Reference:
             Chapter 9, Page 76-77.
         """
-        return [
-            "1. Problem Definition (Don't guess, assess)",
-            "2. Safety Prep (LOTO or you're toast)",
-            "3. Visual Inspection (Look with your eyes, not your hands)",
-            "4. Diagnostic Testing (Multimeter time)",
-            "5. Isolation (Divide and conquer)",
-            "6. Solution (Fix it and flex)"
-        ]
+        return self.TROUBLESHOOTING_STEPS
 
 # --- Quick Test of the Logic ---
 if __name__ == "__main__":
